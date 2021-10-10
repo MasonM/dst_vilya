@@ -44,7 +44,7 @@ local STRINGS = GLOBAL.STRINGS
 STRINGS.CHARACTER_TITLES.esctemplate = "The Sample Character"
 STRINGS.CHARACTER_NAMES.esctemplate = "Esc"
 STRINGS.CHARACTER_DESCRIPTIONS.esctemplate = "*Perk 1\n*Perk 2\n*Perk 3"
-STRINGS.CHARACTER_QUOTES.esctemplate = "\"Quote\""
+STRINGS.CHARACTER_QUOTES.esctemplate = "\"This world could definitely use some morels\""
 STRINGS.CHARACTER_SURVIVABILITY.esctemplate = "Slim"
 
 -- Custom speech strings
