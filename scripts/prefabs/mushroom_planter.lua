@@ -4,7 +4,7 @@ local prefabs = { "red_mushroom" }
 local function plant(inst, pt, deployer)
 	local mushroom = SpawnPrefab("red_mushroom")
 	mushroom.Transform:SetPosition(pt.x, 0, pt.z)
-	inst.components.finiteuses:Use(1)
+	--inst.components.finiteuses:Use(1)
 	--inst:Remove()
 end
 
@@ -21,6 +21,11 @@ local function fn()
 
 	MakeInventoryFloatable(inst, "small", 0.05, 0.9)
 
+	inst.AnimState:SetBank("mushrooms")
+	inst.AnimState:SetBuild("mushrooms")
+	inst.AnimState:PlayAnimation("red")
+	inst.AnimState:SetRayTestOnBB(true)
+
 	inst.entity:SetPristine()
 
 	if not TheWorld.ismastersim then
@@ -31,9 +36,15 @@ local function fn()
 
 	MakeSmallPropagator(inst)
 
+	inst:AddComponent("rechargeable")
+	inst.components.rechargeable.chargetime = 30
+
+	--[[
 	inst:AddComponent("finiteuses")
 	inst.components.finiteuses:SetMaxUses(9999)
 	inst.components.finiteuses:SetUses(1)
+	]]--
+
 
 	inst:AddComponent("inventoryitem")
 

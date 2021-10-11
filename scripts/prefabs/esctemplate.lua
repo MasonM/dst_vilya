@@ -88,7 +88,7 @@ local master_postinit = function(inst)
 
 	inst.OnLoad = onload
 	inst.OnNewSpawn = onload
-	inst:DoPeriodicTask(1.0, slow_near_pickables)
+	inst:DoPeriodicTask(0.1, slow_near_pickables)
 
 end
 
