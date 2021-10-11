@@ -1,6 +1,7 @@
 PrefabFiles = {
 	"esctemplate",
 	"esctemplate_none",
+	"mushroom_planter"
 }
 
 Assets = {
@@ -65,6 +66,31 @@ local skin_modes = {
         offset = { 0, -25 } 
     },
 }
+
+--[[
+-- Make a special action for stickybomb launcher
+local STICKYBOMBING = GLOBAL.Action({ priority= 10 })	
+STICKYBOMBING.str = "Set Up"
+STICKYBOMBING.id = "MUSHROOMPLANTER"
+STICKYBOMBING.fn = function(act)
+	if act.invobject and act.invobject.prefab == "mushroom_planter" and act.invobject.components.deployable and act.invobject.components.deployable:CanDeploy(act.pos) then
+		if act.invobject.components.deployable:Deploy(act.pos, act.doer) then
+			return true
+		end
+	end
+end
+AddAction(STICKYBOMBING)
+
+local stickybombing_handler = ActionHandler(ACTIONS.STICKYBOMBING, "dolongaction")
+AddStategraphActionHandler("wilson", stickybombing_handler)
+
+AddComponentAction("POINT", "deployable", function(inst, doer, pos, actions, right)
+	if right and inst:HasTag("mushroom_planter") and inst.replica.inventoryitem ~= nil and inst.replica.inventoryitem:CanDeploy(pos) then
+		table.insert(actions, ACTIONS.STICKYBOMBING)
+	end
+end)
+AddStategraphActionHandler("wilson_client", stickybombing_handler)
+]]--
 
 -- Add mod character to mod character list. Also specify a gender. Possible genders are MALE, FEMALE, ROBOT, NEUTRAL, and PLURAL.
 AddModCharacter("esctemplate", "FEMALE", skin_modes)

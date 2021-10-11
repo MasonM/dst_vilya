@@ -11,9 +11,8 @@ TUNING.ESCTEMPLATE_SANITY = 200
 
 -- Custom starting inventory
 TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.ESCTEMPLATE = {
+	"mushroom_planter",
 	"flint",
-	"flint",
-	"twigs",
 	"twigs",
 }
 
